@@ -1,0 +1,42 @@
+conda env create --prefix /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.2 -f environment.yml
+
+-----
+
+conda create -y  -c r -c conda-forge -c bioconda  libgfortran gfortran_linux-64 java-jdk r-base==3.5.1 \
+ r-xtable  r-rjson r-utf8 r-openxlsx r-mgcv r-devtools r-httpuv=1.5.2 r-shiny \
+--prefix=/cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.1
+conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.1
+conda install -y  -c conda-forge r-openssl=1.4.1 r-curl=4.3 r-jsonlite=1.6.1
+
+
+# Find all libraris 
+for file in $(find -name DESCRIPTION); do  grep "Package:\|Version" $file; done;
+
+
+wget http://www.lapk.org/software/Pmetrics/Examples.zip
+
+
+
+For saga.sigma2.no using conda
+1. login to saga.sigma2.no
+2. https://github.uio.no/sabryr/Pmetrics_test.git
+3. cd Pmetrics_test
+4. module load Anaconda2/2019.03
+5. conda create -y  -c r -c conda-forge -c  bioconda gcc r-base==3.6.0 r-xtable java-jdk --prefix=/cluster/work/support/sabryr/conda/pmetrics/1.5.2.1
+6. conda install -y  -c r -c psi4 gcc-5  r-rjson r-utf8 r-openxlsx
+7. source /cluster/software/Anaconda2/2019.03/etc/profile.d/conda.sh
+8. conda activate /cluster/work/support/sabryr/conda/pmetrics/1.5.2.1
+9. export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/1.5.2.1/lib
+
+
+-----------------------------------------------
+source /cluster/work/support/Anaconda3/setup.source
+
+#conda create -y  -c r -c conda-forge -c bioconda  libgfortran gfortran_linux-64 java-jdk r-base==3.5.1 r-xtable  r-rjson r-utf8 r-openxlsx r-mgcv --prefix=/cluster/work/support/sabryr/conda/pmetrics/R3.5.1
+conda create -y  -c r -c conda-forge -c bioconda  libgfortran gfortran_linux-64 java-jdk r-base==3.5.1 r-xtable  r-rjson r-utf8 r-openxlsx r-mgcv --prefix=/cluster/work/support/sabryr/conda/pmetrics/R-3.5.1
+#conda install -y  -c r  r-rjson r-utf8 r-openxlsx r-mgcv
+
+conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1
+export R_LIBS=/cluster/projects/nn9997k/sabryr/Pmetrics_test/R
+export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/1.5.2.1/lib
+

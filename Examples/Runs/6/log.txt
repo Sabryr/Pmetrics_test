@@ -1,0 +1,5 @@
+ NPAG  run initiated at 20:55 on 2020 april 14. 
+PREP FILES: /cluster/projects/nn9997k/sabryr/Pmetrics_test3/R/Pmetrics/compiledFortran/sNPprep.o 
+ENGINE FILES: /cluster/projects/nn9997k/sabryr/Pmetrics_test3/R/Pmetrics/compiledFortran/sNPeng.o 
+
+

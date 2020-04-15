@@ -1,0 +1,15 @@
+#!/usr/bin/env Rscript
+#sabryr 2020-02-20
+
+args <- commandArgs(trailingOnly = TRUE)
+	
+if (length(args)==3) {
+  require(Pmetrics)
+  wd = args[1]
+  icen = args[2]
+  parallel = args[3]
+  PMreport(wd,icen=icen,type="NPAG",parallel=parallel)
+}else{
+  stop("Needs 3 arguments", call.=FALSE)
+}
+

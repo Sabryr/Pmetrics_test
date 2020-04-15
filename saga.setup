@@ -1,0 +1,5 @@
+#To set up environment on SAGA
+module load Anaconda2/2019.03
+source /cluster/software/Anaconda2/2019.03/etc/profile.d/conda.sh
+conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1/
+export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.5.1//lib

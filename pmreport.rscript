@@ -1,0 +1,19 @@
+#!/usr/bin/env Rscript
+#sabryr 2020-02-15
+args <- commandArgs(trailingOnly = TRUE)
+print("Creating report")
+if (length(args)==4) {
+   wd <- args[1]
+   icen <- args[2]
+   NPAG <- as.logical(args[3])
+   parallel <- as.logical(args[4])
+   setwd(wd)
+   library(Pmetrics)  
+   print("Reporting started")
+   PMreport(wd,icen,NPAG,parallel)
+   print("Reporting ended")
+}else{
+  stop("Needs 4 arguments", call.=FALSE)
+}
+
+

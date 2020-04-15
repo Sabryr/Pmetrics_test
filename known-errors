@@ -1,0 +1,2 @@
+#https://github.uio.no/sabryr/Pmetrics_test/issues/13
+The indpts number should be 101 or higher. if used 100 this trigers a bug

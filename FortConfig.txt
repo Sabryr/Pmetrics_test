@@ -1,0 +1,2 @@
+gfortran -mcmodel=medium -m64 -O3 -o <exec> <files>
+gfortran -mcmodel=medium -m64 -O3 -o <exec> <files>
