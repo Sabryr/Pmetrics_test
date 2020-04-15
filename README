@@ -1,7 +1,7 @@
-#Sabryr & frodstr
-#2020-04-15
+Sabryr & frodstr
+2020-04-15
 
-For saga.sigma2.no using conda
+##  For saga.sigma2.no using conda
 login to saga.sigma2.no
 
 ´´´
@@ -16,4 +16,18 @@ export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.5.12//lib
 
 How to clean build on SAGA
 rm -rf R
+
+-------
+## For other systems
+- Requirements
+  - R 3.5.2
+  - Fortran compiler
+ 
+The script, pmetrics.sh	when loaunched for the first time will install 
+all R librairies and a version of pmetrics.sh from 
+https://github.com/Sabryr/Pmetrics branch debug
+
+You can	edit this in the file:
+
+pmetrics.rscript
 
