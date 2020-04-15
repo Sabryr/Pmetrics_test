@@ -20,10 +20,10 @@ set -o errexit # Make bash exit on any error
 ## Setup environment
 module load Anaconda2/2019.03
 source /cluster/software/Anaconda2/2019.03/etc/profile.d/conda.sh
-conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1/
-export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.5.1//lib
+conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.2/
+export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.2/lib
 
 
 ##Run pmetrics
 #./pmetrics.sh 9997 120 inputs/data2.csv inputs/model2.txt
-./pmetrics.sh 99 120 inputs/data2.csv inputs/model2.txt
+./pmetrics.sh 99 120 inputs/ex.csv inputs/model.txt
