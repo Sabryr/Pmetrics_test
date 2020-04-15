@@ -1,0 +1,11 @@
+.RData
+.Rhistory
+.log
+etc
+out*
+Pmetrics*
+R
+stdout
+R_newgcc/
+example
+slurm*

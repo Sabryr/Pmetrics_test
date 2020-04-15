@@ -87,8 +87,10 @@ cd $OUT_DIR
 
 echo "directory rename from 1 to $OUT_DIR -- done "
 
+echo "Reports not created, as that step was skipped"
+echo "To create reports issue the command"
 echo $NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT 
-$NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT
+#$NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT
 echo "Done, output folder is $OUT_DIR"
 stty sane
 
