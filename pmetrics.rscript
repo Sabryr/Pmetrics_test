@@ -6,12 +6,13 @@ r["CRAN"] <- "http://cran.r-project.org"
 options(repos=r)
 Sys.setenv(R_INSTALL_STAGED = FALSE)
 
-if (length(args)==5) {
+if (length(args)==6) {
   loc = args[1]
   dataset_file = args[2]
   model_file = args[3]
   mycycles = args[4]
   myindpts = args[5]
+  parallel = args[6]
   if (!require("Pmetrics", quietly = TRUE)){devtools::install_github("Sabryr/Pmetrics", ref = "debug") ; library(Pmetrics);PMbuild()}
   library(Pmetrics)
   fortranloc  <- paste(trimws(Sys.getenv("HOME")),".config/Pmetrics/compiledFortran", sep = "/")
@@ -39,7 +40,7 @@ if (length(args)==5) {
   NPrun(model = "model.txt",data = "data.csv", cycles = mycycles, indpts = myindpts , overwrite = T,  parallel = TRUE) 
  #quit()
 }else{
-  stop("Needs 5 arguments", call.=FALSE)
+  stop("Needs 6 arguments", call.=FALSE)
 }
 
 
