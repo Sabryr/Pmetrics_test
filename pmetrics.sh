@@ -3,6 +3,7 @@
 #Two argments mycycles and myindpts
 mycycles=100 #9997
 myindpts=108 #108
+parallel="FALSE"
 
 ls [1-999]* &> /dev/null
 
@@ -17,7 +18,17 @@ then
 fi
 
 
-if [ "$#" -eq 4 ]
+if [ "$#" -eq 5 ]
+then
+	mycycles=$1 #9997
+	myindpts=$2 #108
+	model_file=$3  #$INPUT_DIR"/dataset.csv" 
+	dataset_file=$4 #$INPUT_DIR"/model.txt"
+        parallel=$5
+	model_file_nm=$(echo $model_file | awk -F "/" '{print $NF}')
+        echo $model_file
+	echo $dataset_file
+elif  [ "$#" -eq 4 ]
 then
 	mycycles=$1 #9997
 	myindpts=$2 #108
@@ -26,14 +37,7 @@ then
 	model_file_nm=$(echo $model_file | awk -F "/" '{print $NF}')
 	echo $model_file
 	echo $dataset_file
-	
-	#echo ${#model_file_nm}
-	#if [ ${#model_file_nm} -ge 8 ]
-	#then
-	#	echo "model_file name length should not exceed 8, your file name  "	
-	#	echo model_file | awk -F "/" '{print $NF}'
-	#	exit 1
-	#fi
+   
 else
 	echo "Need four arguments"
 	echo "1. mycycles"
@@ -44,7 +48,6 @@ else
 fi
 
 echo "Processing"
-#exit 1
 
 
 LOC=$PWD
@@ -92,8 +95,9 @@ cp $FCONF $HOME/.config/Pmetrics/
 
 echo "------------------------------"
 echo $RSCRIPT $Pmetricstar $LOC $model_file $dataset_file $mycycles $myindpts
-$RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts &>> $LOG
+$RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel &>> $LOG
 
+#exit 1
 echo $RSCRIPT " -- done"
 mv 1 $OUT_DIR
 cd $OUT_DIR
@@ -103,7 +107,7 @@ echo "directory rename from 1 to $OUT_DIR -- done "
 echo "Reports not created, as that step was skipped"
 echo "To create reports issue the command"
 echo $NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT 
-#$NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT
+$NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT
 echo "Done, output folder is $OUT_DIR"
 stty sane
 
