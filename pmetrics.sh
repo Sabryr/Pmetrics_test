@@ -97,17 +97,17 @@ echo "------------------------------"
 echo $RSCRIPT $Pmetricstar $LOC $model_file $dataset_file $mycycles $myindpts
 $RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel &>> $LOG
 
-#exit 1
 echo $RSCRIPT " -- done"
 mv 1 $OUT_DIR
 cd $OUT_DIR
 
 echo "directory rename from 1 to $OUT_DIR -- done "
 
-echo "Reports not created, as that step was skipped"
-echo "To create reports issue the command"
 echo $NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT 
-$NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT
+echo "" &>> $LOG
+echo "-----------"$NPSCRIPT"-------------" &>> $LOG
+echo "" &>> $LOG
+$NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT &>> $LOG
 echo "Done, output folder is $OUT_DIR"
 stty sane
 
