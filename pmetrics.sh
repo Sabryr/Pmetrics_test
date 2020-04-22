@@ -4,6 +4,19 @@
 mycycles=100 #9997
 myindpts=108 #108
 
+ls [1-999]* &> /dev/null
+
+if [  $? -eq 0 ]
+then
+        echo "Current directory contain runs from Pmetrics, that did not use the script for HPC"
+        echo " --  "
+        ls | grep -E '^[[:digit:]]+'
+        echo "Please remove them or use new location"
+        sleep 2
+        exit 1
+fi
+
+
 if [ "$#" -eq 4 ]
 then
 	mycycles=$1 #9997
