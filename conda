@@ -1,4 +1,9 @@
 conda env create --prefix /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.2 -f environment.yml
+ln -s x86_64-conda_cos6-linux-gnu-gcc gcc
+ln -s x86_64-conda_cos6-linux-gnu-gfortran gfortran
+
+
+
 
 -----
 
@@ -39,4 +44,10 @@ conda create -y  -c r -c conda-forge -c bioconda  libgfortran gfortran_linux-64 
 conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1
 export R_LIBS=/cluster/projects/nn9997k/sabryr/Pmetrics_test/R
 export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/1.5.2.1/lib
+
+
+
+echo "#export R_LIBS=" > rpackages.list
+echo "myrepo=\"http://cran.r-project.org\"" >> rpackages.list 
+awk -F "r-" '{print $NF}' requirements.txt | awk -F "==" '{print "install.packages(\""$1"\", version=\""$2"\", repos=myrepo)"}' >> rpackages.list
 
