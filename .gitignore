@@ -9,3 +9,5 @@ stdout
 R_newgcc/
 example
 slurm*
+backup_run/
+test/
