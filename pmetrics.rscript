@@ -13,7 +13,7 @@ if (length(args)==6) {
   mycycles = args[4]
   myindpts = args[5]
   parallel = args[6]
-  if (!require("Pmetrics", quietly = TRUE)){devtools::install_github("Sabryr/Pmetrics", ref = "debug") ; library(Pmetrics);PMbuild()}
+  if (!suppressWarnings(require("Pmetrics")){devtools::install_github("Sabryr/Pmetrics", ref = "debug") ; library(Pmetrics);PMbuild()}
   library(Pmetrics)
   fortranloc  <- paste(trimws(Sys.getenv("HOME")),".config/Pmetrics/compiledFortran", sep = "/")
   #print(fortranloc)
