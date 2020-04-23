@@ -11,3 +11,4 @@ example
 slurm*
 backup_run/
 test/
+job-pmetrics.slurm
