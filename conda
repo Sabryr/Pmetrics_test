@@ -14,13 +14,16 @@ conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.1
 conda install -y  -c conda-forge r-openssl=1.4.1 r-curl=4.3 r-jsonlite=1.6.1
 
 ----
-gcc 8.2.0
-conda create -y  -c r -c conda-forge -c bioconda gcc-dbg_linux-64=8.2.0 libgfortran gfortran_linux-64=8.2.0 java-jdk r-base==3.5.1 \
- r-xtable  r-rjson r-utf8 r-openxlsx r-mgcv r-devtools r-httpuv=1.5.2 r-shiny \
---prefix=/cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.1
-conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.1
-conda install -y  -c conda-forge r-openssl=1.4.1 r-curl=4.3 r-jsonlite=1.6.1
+gcc R-3.6.0 
+module load Anaconda2/2019.03
+source /cluster/software/Anaconda2/2019.03/etc/profile.d/conda.sh
 
+conda create -y -c conda-forge -c bioconda java-jdk r-essentials=3.6.0 \
+--prefix=/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0
+conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.6.0
+export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/lib:$LD_LIBRARY_PATH
+
+conda install -c conda-forge r-devtool r-zip=2.0.4 r-openxlsx=4.1.4 r-mclust=5.4.6 r-doParallel=1.0.15 r-chron=2.3-55 r-BH==1.72.0-3
 
 -----
 gcc 5.3
