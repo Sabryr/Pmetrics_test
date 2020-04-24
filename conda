@@ -13,6 +13,15 @@ conda create -y  -c r -c conda-forge -c bioconda  libgfortran gfortran_linux-64 
 conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.1
 conda install -y  -c conda-forge r-openssl=1.4.1 r-curl=4.3 r-jsonlite=1.6.1
 
+----
+gcc 8.2.0
+conda create -y  -c r -c conda-forge -c bioconda gcc-dbg_linux-64=8.2.0 libgfortran gfortran_linux-64=8.2.0 java-jdk r-base==3.5.1 \
+ r-xtable  r-rjson r-utf8 r-openxlsx r-mgcv r-devtools r-httpuv=1.5.2 r-shiny \
+--prefix=/cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.1
+conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.1
+conda install -y  -c conda-forge r-openssl=1.4.1 r-curl=4.3 r-jsonlite=1.6.1
+
+
 -----
 gcc 5.3
 gfortran_linux-64              5.4.0
