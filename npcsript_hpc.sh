@@ -9,7 +9,7 @@ date +%s>>time.txt
 ./np_prep MacOSX < PMcontrol
 echo 1 > extnum
 echo go > go
-gfortran -mcmodel=medium -m64 -w -O3 -o np_run $PM_RLIB/Pmetrics/compiledFortran/sNPeng.o npagdriv.f
+/usr/bin/gfortran -mcmodel=medium -m64 -O3 -L${HPC_MKL_LIB} -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -o np_run $PM_RLIB/Pmetrics/compiledFortran/sNPeng.o npagdriv.f
 ./np_run < go
 echo;echo Cleaning up....;echo
 stty sane
