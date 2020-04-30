@@ -7,10 +7,16 @@ login to saga.sigma2.no
 ´´´
 git clone https://github.uio.no/sabryr/Pmetrics_test.git
 cd Pmetrics_test
+
+conda deactivate &>/dev/null
+module restore
 module load Anaconda2/2019.03
 source /cluster/software/Anaconda2/2019.03/etc/profile.d/conda.sh
-conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.2
-export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.2/lib:$LD_LIBRARY_PATH
+conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.6.0
+export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/lib:/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64_lin:$LD_LIBRARY_PATH
+
+export R_LIBS=/cluster/projects/nn9997k/sabryr/new_pmetrics/R
+
 
 
 Run a test
