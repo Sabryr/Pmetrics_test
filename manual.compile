@@ -1,0 +1,24 @@
+LAPKB does not collect or store any personal or identifying information.[1] "compiler"
+[1] "gfortran -m64 -w -O3 -o <exec> <files>"                
+[2] "gfortran -mcmodel=medium -m64 -w -O3 -o <exec> <files>"
+[1] "is pararrel in PMbuild"
+[1] TRUE
+
+gfortran -O3 -w -fopenmp -fmax-stack-var-size=32768 
+
+gfortran -m64 -w -O3 -o sNPprep.o -c 'NPprep_120.f'
+gfortran -m64 -w -O3 -o sNPeng.o -c 'NPeng_120.f'
+gfortran -mcmodel=medium -m64 -w -O3 -o pNPeng.o -c 'NPeng_120.f'
+gfortran -m64 -w -O3 -o sITprep.o -c 'ITprep_114.f'
+gfortran -m64 -w -O3 -o sITeng.o -c 'ITeng_114.f'
+gfortran -m64 -w -O3 -o sITerr.o -c 'ITerr_114.f'
+gfortran -m64 -w -O3 -o sSIMeng.o -c 'SIMeng_114.f'
+gfortran -m64 -w -O3 -o DOprep.exe 'DOprep_7.f'
+gfortran -m64 -w -O3 -o sDOeng.o -c 'DOeng_7.f'
+gfortran -m64 -w -O3 -o mb2csv.exe 'mb2csv_1.f'
+
+
+export HPC_MKL_LIB=/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64
+/usr/bin/gfortran  -mcmodel=medium  -O3 -w -fopenmp -fmax-stack-var-size=32768 -L${HPC_MKL_LIB} -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -o pNPeng.o -c 'NPeng_120.f'
+/cluster/projects/nn9997k/sabryr/parr_pmetrics/runs/2.1]$ /usr/bin/gfortran  -mcmodel=medium  -O3 -w -fopenmp -fmax-stack-var-size=32768 -L${HPC_MKL_LIB} -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -o np_run 'pNPeng.o' npagdriv.f
+
