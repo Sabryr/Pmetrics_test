@@ -1,0 +1,18 @@
+#Extract R packages
+
+for fold in $(ls ); do CV=$(grep "Version: " $fold"/DESCRIPTION"| awk -F "Version: " '{print $NF}'); echo "install.packages(\""$fold"\", version=\""$CV"\", repos=myrepo)" >>/cluster/projects/nn9997k/sabryr/new_pmetrics/r-pkg.list;done;
+
+export OUTF="/cluster/projects/nn9997k/sabryr/new_pmetrics/r-pkg-require.list"
+echo ".libPaths(\"/cluster/projects/nn9997k/sabryr/new_pmetrics/R\")" > $OUTF
+echo "myrepo=\"http://cran.r-project.org\"" >> $OUTF
+for fold in $(ls ); \
+do CV=$(grep "Version: " $fold"/DESCRIPTION"| awk -F "Version: " '{print $NF}'); \
+printf 'if (!suppressWarnings' >>$OUTF; \
+echo "(require(\"$fold\"))){install.packages(\""$fold"\", version=\""$CV"\", repos=myrepo)}"\
+>>$OUTF; \
+done;
+
+
+
+#TEst
+grep "install.packages" r-pkg.list |  awk -F "\"" '{print "library("$2")"}' > Rpackages.test
