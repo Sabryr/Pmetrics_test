@@ -58,6 +58,7 @@ touch $LOG
 FCONF=$LOC"/FortConfig.txt"
 RSCRIPT=$LOC"/pmetrics.rscript"
 export R_LIBS=$LOC"/R"
+export HPC_MKL_LIB=/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64
 mkdir $R_LIBS &> /dev/null
 NPSCRIPT=$LOC"/npcsript_hpc.sh"
 REPORTSCRIPT=$LOC"/pmreport.rscript"
