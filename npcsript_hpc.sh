@@ -9,7 +9,14 @@ date +%s>>time.txt
 ./np_prep MacOSX < PMcontrol
 echo 1 > extnum
 echo go > go
-/usr/bin/gfortran -mcmodel=medium -m64 -O3 -L${HPC_MKL_LIB} -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -o np_run $PM_RLIB/Pmetrics/compiledFortran/sNPeng.o npagdriv.f
+cp ${$PM_RLIB}"/Pmetrics/code/NPeng_120.f" .
+ls -lh ${$PM_RLIB}"/Pmetrics/code/NPeng_120.f"
+ls -lh 
+export HPC_MKL_LIB=/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64
+/usr/bin/gfortran -mcmodel=medium -m64 -O3 -w -fopenmp -fmax-stack-var-size=32768  -L${HPC_MKL_LIB} -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -o pNPeng.o -c 'NPeng_120.f'
+/usr/bin/gfortran -mcmodel=medium -m64 -O3 -w -fopenmp -fmax-stack-var-size=32768  -L${HPC_MKL_LIB} -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -o np_run sNPeng.o npagdriv.f
+#/usr/bin/gfortran -mcmodel=medium -m64 -O3 -w -fopenmp -fmax-stack-var-size=32768  -L${HPC_MKL_LIB} -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -o np_run $PM_RLIB/Pmetrics/compiledFortran/sNPeng.o npagdriv.f
+exit 1
 ./np_run < go
 echo;echo Cleaning up....;echo
 stty sane
