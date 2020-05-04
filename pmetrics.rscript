@@ -14,7 +14,11 @@ if (length(args)==6) {
   mycycles = args[4]
   myindpts = args[5]
   parallel = args[6]
-  #if (!suppressWarnings(require("Pmetrics"))){devtools::install_github("Sabryr/Pmetrics", ref = "debug") ; library(Pmetrics);PMbuild()}
+  if (!suppressWarnings(require("Pmetrics"))){
+    devtools::install_github("Sabryr/Pmetrics", ref = "debug", upgrade_dependencies = FALSE)
+    library(Pmetrics)
+    PMbuild()
+  }
   print("Paths")
   print(.libPaths())
   library(Pmetrics)
