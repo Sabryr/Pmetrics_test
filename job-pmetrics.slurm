@@ -29,4 +29,4 @@ export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/lib:/
 ##Run pmetrics
 #./pmetrics.sh 997 120 inputs/data2.csv inputs/model2.txt
 #./pmetrics.sh 997 110 propdata/data2.csv propdata/model2.txt
-./pmetrics.sh 10 4 propdata/data2.csv propdata/model2.txt
+./pmetrics.sh 997 120 Examples/src/ex.csv Examples/src/model.txt
