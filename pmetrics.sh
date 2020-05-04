@@ -4,6 +4,7 @@
 mycycles=100 #9997
 myindpts=108 #108
 parallel="FALSE"
+export HPC_MKL_LIB=/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64
 
 ls [1-999]* &> /dev/null
 
@@ -16,15 +17,6 @@ then
         sleep 2
         exit 1
 fi
-
-#conda deactivate &>/dev/null
-#conda deactivate &>/dev/null
-#module restore
-#module load Anaconda2/2019.03
-#source /cluster/software/Anaconda2/2019.03/etc/profile.d/conda.sh
-#conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.6.0
-#export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/lib:/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64_lin:$LD_LIBRARY_PATH
-
 
 if [ "$#" -eq 5 ]
 then
@@ -57,7 +49,6 @@ fi
 
 echo "Processing"
 
-
 LOC=$PWD
 OUT_DIR=$LOC"/out_"$(date +"%Y%m%d_%H%M%S")
 LOG=$LOC"/out_"$(date +"%Y%m%d_%H%M%S")".log"
@@ -66,7 +57,6 @@ touch $LOG
 FCONF=$LOC"/FortConfig.txt"
 RSCRIPT=$LOC"/pmetrics.rscript"
 export R_LIBS=$LOC"/R"
-export HPC_MKL_LIB=/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64
 mkdir $R_LIBS &> /dev/null
 NPSCRIPT=$LOC"/npcsript_hpc.sh"
 REPORTSCRIPT=$LOC"/pmreport.rscript"
@@ -103,6 +93,7 @@ mkdir -p $HOME/.config/Pmetrics &> /dev/null
 cp $FCONF $HOME/.config/Pmetrics/
 
 echo "------------------------------"
+
 echo $RSCRIPT $Pmetricstar $LOC $model_file $dataset_file $mycycles $myindpts
 which Rscript
 echo $RSCRIPT
