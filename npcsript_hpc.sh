@@ -51,6 +51,6 @@ mv time.txt outputs
 if ! $error ; then 
 echo "BLOCK " Rscript $REPORTSCRIPT $1'/outputs' 'median' 'NPAG' TRUE
 #Rscript $REPORTSCRIPT $1'/outputs' 'median' 'NPAG' TRUE
-echo "results are in"  $1'/outputs/NPAGreport.html' ; 
+#echo "results are in"  $1'/outputs/NPAGreport.html' ; 
 fi
 mv npscript $1"/etc"
