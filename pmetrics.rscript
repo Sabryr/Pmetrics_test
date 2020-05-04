@@ -1,5 +1,5 @@
-#!/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/bin/Rscript
-####!/usr/bin/env Rscript
+#!/usr/bin/env Rscript
+###!/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/bin/Rscript
 #sabryr 2020-02-14
 args <- commandArgs(trailingOnly = TRUE)
 r <- getOption("repos")
@@ -8,7 +8,6 @@ options(repos=r)
 Sys.setenv(R_INSTALL_STAGED = FALSE)
 
 if (length(args)==6) {
-  .libPaths(c("/cluster/projects/nn9997k/sabryr/parr_pmetrics/R","/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/lib/R/library"))
   loc = args[1]
   dataset_file = args[2]
   model_file = args[3]
@@ -16,6 +15,7 @@ if (length(args)==6) {
   myindpts = args[5]
   parallel = args[6]
   #if (!suppressWarnings(require("Pmetrics"))){devtools::install_github("Sabryr/Pmetrics", ref = "debug") ; library(Pmetrics);PMbuild()}
+  print("Paths")
   print(.libPaths())
   library(Pmetrics)
   fortranloc  <- paste(trimws(Sys.getenv("HOME")),".config/Pmetrics/compiledFortran", sep = "/")
@@ -29,7 +29,7 @@ if (length(args)==6) {
   print(paste(model_file, "basename of model_file ", basename(model_file), sep = " : "))
   print(paste(dataset_file, "basename of dataset_file ", basename(dataset_file), sep = " : "))
   if(!file.exists("model.txt")){
-	print("No model.txt")
+	print("Safe, No model.txt found , renaming ")
 	file.rename(basename(model_file), "model.txt")
   }
 
@@ -41,7 +41,6 @@ if (length(args)==6) {
   print(paste(dataset_file, " dataset_file full path", dataset_file, sep = " : "))
   #print(paste("Files in  ", getwd(), list.files(), sep = " : "))
   NPrun(model = "model.txt",data = "data.csv", cycles = mycycles, indpts = myindpts , overwrite = T,  parallel = TRUE) 
- #quit()
 }else{
   stop("Needs 6 arguments", call.=FALSE)
 }
