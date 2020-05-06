@@ -15,7 +15,7 @@ if (length(args)==6) {
   myindpts = args[5]
   parallel = args[6]
   if (!suppressWarnings(require("Pmetrics"))){
-    devtools::install_github("Sabryr/Pmetrics", ref = "debug", upgrade_dependencies = FALSE)
+    devtools::install_github("Sabryr/Pmetrics", ref = "debug",  upgrade = FALSE)
     library(Pmetrics)
     PMbuild()
   }
