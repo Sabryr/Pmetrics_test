@@ -20,7 +20,7 @@ NPSCRIPT=$LOC"/npcsript_hpc.sh"
 REPORTSCRIPT=$LOC"/pmreport.rscript"
 
 touch $R_LIBS"/test"
-PMETRICS_R=$R_LIBS"/testPmetrics"
+PMETRICS_R=$R_LIBS"/Pmetrics"
 
 if [ "$#" -eq 1 ]
 then
@@ -50,7 +50,7 @@ then
 fi
 
 
-if [ -d "PMETRICS_R" ]; then
+if [ -d "$PMETRICS_R" ]; then
    echo "PMtrics R libraries found in "$PMETRICS_R
 else
    echo "PMtrics R libraries not found in expected location "$PMETRICS_R
