@@ -9,14 +9,13 @@ print("Checking")
 print(.libPaths())
 
 if (!suppressWarnings(require("Pmetrics"))){
-    print("OK")
-    #library(devtools)
-    #devtools::install_github("Sabryr/Pmetrics", ref = "debug",  upgrade = FALSE)
-    #library(Pmetrics)
-    #PMbuild()
+    print("Installing..")
+    library(devtools)
+    devtools::install_github("Sabryr/Pmetrics", ref = "debug",  upgrade = FALSE)
+    library(Pmetrics)
+    PMbuild()
 }else{
     print("Pmetrics already installed in ")
     library(Pmetrics)
-    print("Pmetrics already installed in ")
-    print(path.package("Pmetrics”))
+    print(path.package("Pmetrics"))
 }

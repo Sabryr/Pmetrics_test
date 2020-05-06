@@ -1,10 +1,41 @@
 #!/bin/bash
 #2020-02-14 Sabryr
 #Two argments mycycles and myindpts
+VERSION="0.1"
 mycycles=100 #9997
 myindpts=108 #108
 parallel="FALSE"
 export HPC_MKL_LIB=/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64
+
+LOC=$PWD
+OUT_DIR=$LOC"/out_"$(date +"%Y%m%d_%H%M%S")
+LOG=$LOC"/out_"$(date +"%Y%m%d_%H%M%S")".log"
+echo "LOG "$LOG
+touch $LOG
+FCONF=$LOC"/FortConfig.txt"
+RSCRIPT=$LOC"/pmetrics.rscript"
+export R_LIBS=$LOC"/R"
+mkdir $R_LIBS &> /dev/null
+NPSCRIPT=$LOC"/npcsript_hpc.sh"
+REPORTSCRIPT=$LOC"/pmreport.rscript"
+
+touch $R_LIBS"/test"
+PMETRICS_R=$R_LIBS"/testPmetrics"
+
+if [ "$#" -eq 1 ]
+then
+  if [ "$1" = "-v" ]
+  then  
+     echo "Pmetrics HPC test version "$VERSION
+  elif [ "$1" = "INSTALL" ]
+  then
+    $LOC"/install.rscript"   
+  else
+    echo "Pmetrics HPC test version "$VERSION
+  fi
+exit 0 
+fi
+
 
 ls [1-999]* &> /dev/null
 
@@ -16,6 +47,17 @@ then
         echo "Please remove them or use new location"
         sleep 2
         exit 1
+fi
+
+
+if [ -d "PMETRICS_R" ]; then
+   echo "PMtrics R libraries found in "$PMETRICS_R
+else
+   echo "PMtrics R libraries not found in expected location "$PMETRICS_R
+   echo "Please install that from a login node first"
+   echo "Command to to use:"
+   echo "./pmetrics.sh INSTALL"
+   exit 1
 fi
 
 if [ "$#" -eq 5 ]
@@ -49,19 +91,6 @@ fi
 
 echo "Processing"
 
-LOC=$PWD
-OUT_DIR=$LOC"/out_"$(date +"%Y%m%d_%H%M%S")
-LOG=$LOC"/out_"$(date +"%Y%m%d_%H%M%S")".log"
-echo "LOG "$LOG
-touch $LOG
-FCONF=$LOC"/FortConfig.txt"
-RSCRIPT=$LOC"/pmetrics.rscript"
-export R_LIBS=$LOC"/R"
-mkdir $R_LIBS &> /dev/null
-NPSCRIPT=$LOC"/npcsript_hpc.sh"
-REPORTSCRIPT=$LOC"/pmreport.rscript"
-
-touch $R_LIBS"/test"
 if [ $? -eq 0 ]
 then
 	echo "R packages will be installed to "$R_LIBS
