@@ -1,0 +1,22 @@
+#!/usr/bin/env Rscript
+#sabryr 2020-05-06
+args <- commandArgs(trailingOnly = TRUE)
+r <- getOption("repos")
+r["CRAN"] <- "http://cran.r-project.org" 
+options(repos=r)
+Sys.setenv(R_INSTALL_STAGED = FALSE)
+print("Checking")
+print(.libPaths())
+
+if (!suppressWarnings(require("Pmetrics"))){
+    print("OK")
+    #library(devtools)
+    #devtools::install_github("Sabryr/Pmetrics", ref = "debug",  upgrade = FALSE)
+    #library(Pmetrics)
+    #PMbuild()
+}else{
+    print("Pmetrics already installed in ")
+    library(Pmetrics)
+    print("Pmetrics already installed in ")
+    print(path.package("Pmetrics”))
+}
