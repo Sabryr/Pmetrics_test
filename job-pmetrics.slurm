@@ -2,9 +2,9 @@
 
 #SBATCH --job-name=Pmetrics-test
 #SBATCH --account=nn9736k
-#SBATCH --time=4:10:00
+#SBATCH --time=1:10:00
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=2
 #SBATCH --mem-per-cpu=4G
 
 ## Recommended safety settings:                                                                                              
@@ -29,4 +29,4 @@ export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/lib:/
 ##Run pmetrics
 #./pmetrics.sh 997 120 inputs/data2.csv inputs/model2.txt
 #./pmetrics.sh 997 110 propdata/data2.csv propdata/model2.txt
-./pmetrics.sh 997 120 Examples/src/ex.csv Examples/src/model.txt
+./pmetrics.sh 2 4 Examples/src/ex.csv Examples/src/model.txt
