@@ -1,0 +1,16 @@
+#!/usr/bin/env Rscript
+#sabryr 2020-02-14
+args <- commandArgs(trailingOnly = TRUE)
+r <- getOption("repos")
+r["CRAN"] <- "http://cran.r-project.org" 
+options(repos=r)
+Sys.setenv(R_INSTALL_STAGED = FALSE)
+
+if (length(args)>1) {
+  print(.libPaths())
+  library(Pmetrics)
+  print(search())
+}else{
+  stop("Need arguments", call.=FALSE)
+}
+
