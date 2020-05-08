@@ -19,12 +19,11 @@
 conda deactivate &>/dev/null
 conda deactivate &>/dev/null
 module restore
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin 
 module load Anaconda2/2019.03
 source /cluster/software/Anaconda2/2019.03/etc/profile.d/conda.sh
 conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.6.0
 export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/lib:/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64_lin:$LD_LIBRARY_PATH
-
-#export R_LIBS=/cluster/projects/nn9997k/sabryr/parr_pmetrics/R
 
 ##Run pmetrics
 #./pmetrics.sh 997 120 inputs/data2.csv inputs/model2.txt
