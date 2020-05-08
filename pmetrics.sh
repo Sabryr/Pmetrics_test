@@ -24,10 +24,11 @@ PMETRICS_R=$R_LIBS"/Pmetrics"
 
 if [ "$#" -eq 1 ]
 then
-  if [ "$1" = "-v" ]
+  INP=$(echo $1 | tr a-z A-Z)
+  if [[ "$INP" =~ "V"  ]] || [[ "$INP" =~ "VERSION"  ]]
   then  
      echo "Pmetrics HPC test version "$VERSION
-  elif [ "$1" = "INSTALL" ]
+  elif [[ "$INP" =~ "INSTALL" ]]
   then
    conda deactivate &>/dev/null
    conda deactivate &>/dev/null
