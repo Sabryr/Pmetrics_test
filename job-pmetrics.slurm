@@ -19,7 +19,7 @@
 conda deactivate &>/dev/null
 conda deactivate &>/dev/null
 module restore
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin 
+export PATH=/node/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/cluster/bin  
 module load Anaconda2/2019.03
 source /cluster/software/Anaconda2/2019.03/etc/profile.d/conda.sh
 conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.6.0
