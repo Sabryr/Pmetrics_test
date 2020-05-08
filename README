@@ -8,8 +8,13 @@ login to saga.sigma2.no
 #rm -rf Pmetrics_test
 git clone https://github.uio.no/sabryr/Pmetrics_test.git
 cd Pmetrics_test
-#edit job-pmetrics.slurm to point to data and set other run parameters
-sbatch job-pmetrics.slurm
+
+#Install Pmetrics R package from login node, this can not be done 
+#on login node 
+./pmetrics.sh install
+
+#Edit job-pmetrics.slurm to point to data and set other run parameters
+sbatch job-pmetrics.slurm 
 ´´´
 
 
@@ -17,6 +22,10 @@ sbatch job-pmetrics.slurm
 ##  For saga.sigma2.no manual test
 
 ´´´
+#Install Pmetrics R package if not already done 
+./pmetrics.sh install
+
+
 conda deactivate &>/dev/null
 conda deactivate &>/dev/null
 module restore
