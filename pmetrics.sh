@@ -148,4 +148,5 @@ echo "-----------"$NPSCRIPT"-------------" &>> $LOG
 echo "" &>> $LOG
 $NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT &>> $LOG
 echo "Done, output folder is $OUT_DIR"
+echo "HTML report in "$OUT_DIR"/outputs/NPAGreport.html"
 stty sane
