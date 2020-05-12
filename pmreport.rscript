@@ -10,7 +10,8 @@ if (length(args)==4) {
    setwd(wd)
    library(Pmetrics)  
    print("Reporting started")
-   PMreport(wd,icen,NPAG,parallel)
+   #PMreport(paste(currwd, newdir, "outputs", sep = "/"), icen = icen, type = type, parallel = parallel) 
+   PMreport(wd,icen = icen, type = "NPAG", parallel = parallel)
    print("Reporting ended")
 }else{
   stop("Needs 4 arguments", call.=FALSE)
