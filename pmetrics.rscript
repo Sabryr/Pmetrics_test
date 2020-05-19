@@ -7,13 +7,15 @@ r["CRAN"] <- "http://cran.r-project.org"
 options(repos=r)
 Sys.setenv(R_INSTALL_STAGED = FALSE)
 
-if (length(args)==6) {
+if (length(args)==8) {
   loc = args[1]
   dataset_file = args[2]
-  model_file = args[3]
+  model_file = args[3] 
   mycycles = args[4]
   myindpts = args[5]
   parallel = args[6]
+  mod_model_file =  args[7] #"model.txt"
+  mod_data_file =  args[8]#"data.csv"
   if (!suppressWarnings(require("Pmetrics"))){
     devtools::install_github("Sabryr/Pmetrics", ref = "debug",  upgrade = FALSE)
     library(Pmetrics)
@@ -32,21 +34,22 @@ if (length(args)==6) {
   file.copy(from=c(model_file, dataset_file), to=getwd(), overwrite=T)
   print(paste(model_file, "basename of model_file ", basename(model_file), sep = " : "))
   print(paste(dataset_file, "basename of dataset_file ", basename(dataset_file), sep = " : "))
-  if(!file.exists("model.txt")){
+
+  if(!file.exists(mod_model_file)){
 	print("Safe, No model.txt found , renaming ")
-	file.rename(basename(model_file), "model.txt")
+	file.rename(basename(model_file), mod_model_file)
   }
 
-  if(!file.exists("data.csv")){
+  if(!file.exists(mod_data_file)){
 	print("No model.txt")
-  	file.rename(basename(dataset_file), "data.csv" )
+  	file.rename(basename(dataset_file), mod_data_file )
   }
-  print(paste(model_file, " model_file full path", model_file, sep = " : "))
+  print(paste(mod_model_file, " mod_model_file full path", mod_model_file, sep = " : "))
   print(paste(dataset_file, " dataset_file full path", dataset_file, sep = " : "))
   #print(paste("Files in  ", getwd(), list.files(), sep = " : "))
-  NPrun(model = "model.txt",data = "data.csv", cycles = mycycles, indpts = myindpts , overwrite = T,  parallel = TRUE) 
+  NPrun(model = mod_model_file,data = mod_data_file, cycles = mycycles, indpts = myindpts , overwrite = T,  parallel = TRUE) 
 }else{
-  stop("Needs 6 arguments", call.=FALSE)
+  stop("Needs 8 arguments", call.=FALSE)
 }
 
 

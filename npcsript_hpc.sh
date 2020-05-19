@@ -4,6 +4,10 @@ cd "$1"
 ls -lhrt 
 PM_RLIB="$2"
 REPORTSCRIPT="$3"
+MODEL_FILE="$4"
+DATA_FILE="$5"
+ORIG_MODEL_FILE=$(basename "$6")
+ORIG_DATA_FILE=$(basename "$7")
 echo Linux>time.txt
 date +%s>>time.txt
 ./np_prep MacOSX < PMcontrol
@@ -22,7 +26,7 @@ mkdir inputs
 mkdir outputs 
 mkdir wrkcopy  
 mkdir etc  
-echo data.csv >> NP_RF0001.TXT
+echo $DATA_FILE >> NP_RF0001.TXT
 if [ ! -f NP_RF0001.TXT ]; then error=true; else error=false; fi
 if [ -f DEN* ]; then mv DEN* outputs; fi
 if [ -f OUT0* ]; then mv OUT0* outputs; fi
@@ -35,7 +39,7 @@ mv instr.inx etc
 mv log.txt outputs
 mv PMcontrol etc
 mv model.for etc/model.for
-mv model.txt inputs/model.txt
+mv $MODEL_FILE inputs/$ORIG_MODEL_FILE
 mv XQZPJ*.ZMQ wrkcopy
 mv extnum etc
 mv npag*.* etc
@@ -45,7 +49,7 @@ rm fort.*
 rm go
 mv np_prep* etc
 mv np_run* etc
-mv data.csv inputs
+mv $DATA_FILE inputs/$ORIG_DATA_FILE
 date +%s >> time.txt
 mv time.txt outputs
 if ! $error ; then 

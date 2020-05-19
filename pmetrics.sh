@@ -4,6 +4,11 @@
 VERSION="0.1"
 mycycles=100 #9997
 myindpts=108 #108
+
+MODEL_FILE_NM="model.txt"
+DATA_FILE_NM="dataset.csv"
+
+
 parallel="FALSE"
 export HPC_MKL_LIB=/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64
 
@@ -131,10 +136,13 @@ cp $FCONF $HOME/.config/Pmetrics/
 
 echo "------------------------------"
 
-echo $RSCRIPT $Pmetricstar $LOC $model_file $dataset_file $mycycles $myindpts
+echo $RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel $MODEL_FILE_NM $DATA_FILE_NM &>> $LOG
+
+
 which Rscript
 echo $RSCRIPT
-$RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel &>> $LOG
+#$RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel &>> $LOG
+$RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel $MODEL_FILE_NM $DATA_FILE_NM &>> $LOG
 
 echo $RSCRIPT " -- done"
 mv 1 $OUT_DIR
@@ -142,11 +150,11 @@ cd $OUT_DIR
 
 echo "directory rename from 1 to $OUT_DIR -- done "
 
-echo $NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT 
+echo $NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT $MODEL_FILE_NM $DATA_FILE_NM  
 echo "" &>> $LOG
 echo "-----------"$NPSCRIPT"-------------" &>> $LOG
 echo "" &>> $LOG
-$NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT &>> $LOG
+$NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT $MODEL_FILE_NM $DATA_FILE_NM  $model_file $dataset_file&>> $LOG
 echo "Done, output folder is $OUT_DIR"
 echo "HTML report in "$OUT_DIR"/outputs/NPAGreport.html"
 stty sane
