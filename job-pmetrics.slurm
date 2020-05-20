@@ -25,7 +25,13 @@ source /cluster/software/Anaconda2/2019.03/etc/profile.d/conda.sh
 conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.6.0
 export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/lib:/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64_lin:$LD_LIBRARY_PATH
 
+CYCLES=1
+INDPTS=4
+DATA_FILE="Examples/parallel/testmod.txt "
+MODEL_FILE="Examples/parallel/testdata.csv"
+PARALLEL="TRUE"
+ODE="-4"
+TOL="0.01"
+
 ##Run pmetrics
-#./pmetrics.sh 997 120 inputs/data2.csv inputs/model2.txt
-#./pmetrics.sh 997 110 propdata/data2.csv propdata/model2.txt
-./pmetrics.sh 2 4 Examples/src/ex.csv Examples/src/model.txt
+./pmetrics.sh $CYCLES $INDPTS $DATA_FILE $MODEL_FILE $PARALLEL $ODE $TOL
