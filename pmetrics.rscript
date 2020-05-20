@@ -7,7 +7,33 @@ r["CRAN"] <- "http://cran.r-project.org"
 options(repos=r)
 Sys.setenv(R_INSTALL_STAGED = FALSE)
 
-if (length(args)==8) {
+valmap <- list()
+valmap$auto <- TRUE
+valmap$include <- FALSE
+valmap$exclude <- FALSE
+valmap$indpts <- FALSE
+valmap$salt <- FALSE
+valmap$intern <- FALSE
+valmap$silent <- FALSE
+valmap$overwrite <- FALSE
+valmap$nocheck <- FALSE
+valmap$alq <- FALSE
+valmap$remote <- FALSE
+valmap$run <- FALSE
+valmap$aucint <- FALSE
+valmap$prior <- FALSE
+valmap$cycles <- 100
+valmap$ode <- -4
+valmap$tol <- 0.01
+valmap$idelta <- 12
+valmap$parallel <- NA
+valmap$model <- "model.txt"
+valmap$data <- "data.csv"
+valmap$icen <- "median"
+valmap$server_address <- NULL
+
+
+if (length(args)>=8) {
   loc = args[1]
   dataset_file = args[2]
   model_file = args[3] 
@@ -16,6 +42,13 @@ if (length(args)==8) {
   parallel = args[6]
   mod_model_file =  args[7] #"model.txt"
   mod_data_file =  args[8]#"data.csv"
+  
+  if (length(args)>=8) {
+    valmap$ode <- args[9]
+    valmap$tol <- args[10]
+
+  }
+   
   if (!suppressWarnings(require("Pmetrics"))){
     devtools::install_github("Sabryr/Pmetrics", ref = "debug",  upgrade = FALSE)
     library(Pmetrics)
@@ -47,7 +80,8 @@ if (length(args)==8) {
   print(paste(mod_model_file, " mod_model_file full path", mod_model_file, sep = " : "))
   print(paste(dataset_file, " dataset_file full path", dataset_file, sep = " : "))
   #print(paste("Files in  ", getwd(), list.files(), sep = " : "))
-  NPrun(model = mod_model_file,data = mod_data_file, cycles = mycycles, indpts = myindpts , overwrite = T,  parallel = TRUE) 
+  print(paste("ode =", valmap$ode, "  tol = ",valmap$tol))
+  NPrun(model = mod_model_file,data = mod_data_file, cycles = mycycles, indpts = myindpts , overwrite = T,  parallel = TRUE , ode = valmap$ode, tol = valmap$tol ) 
 }else{
   stop("Needs 8 arguments", call.=FALSE)
 }
