@@ -27,8 +27,8 @@ export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/lib:/
 
 CYCLES=1
 INDPTS=4
-DATA_FILE="Examples/parallel/testmod.txt "
-MODEL_FILE="Examples/parallel/testdata.csv"
+MODEL_FILE="Examples/parallel/testmod.txt "
+DATA_FILE="Examples/parallel/testdata.csv"
 PARALLEL="TRUE"
 ODE="-4"
 TOL="0.01"
