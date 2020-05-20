@@ -68,20 +68,20 @@ if (length(args)>=8) {
   print(paste(model_file, "basename of model_file ", basename(model_file), sep = " : "))
   print(paste(dataset_file, "basename of dataset_file ", basename(dataset_file), sep = " : "))
 
-  if(!file.exists(mod_model_file)){
-	print("Safe, No model.txt found , renaming ")
-	file.rename(basename(model_file), mod_model_file)
-  }
+  #if(!file.exists(mod_model_file)){
+  #	print("Safe, No model.txt found , renaming ")
+  file.rename(basename(model_file), mod_model_file)
+  #}
 
-  if(!file.exists(mod_data_file)){
-	print("No model.txt")
-  	file.rename(basename(dataset_file), mod_data_file )
-  }
-  print(paste(mod_model_file, " mod_model_file full path", mod_model_file, sep = " : "))
-  print(paste(dataset_file, " dataset_file full path", dataset_file, sep = " : "))
+  #if(!file.exists(mod_data_file)){
+  #print("No model.txt")
+  file.rename(basename(dataset_file), mod_data_file )
+  #}
+  #print(paste(" mod_model_file ", mod_model_file, sep = " : "))
+  #print(paste(" mod_data_file ", mod_data_file, sep = " : "))
   #print(paste("Files in  ", getwd(), list.files(), sep = " : "))
   print(paste("ode =", valmap$ode, "  tol = ",valmap$tol))
-  NPrun(model = mod_model_file,data = mod_data_file, cycles = mycycles, indpts = myindpts , overwrite = T,  parallel = TRUE , ode = valmap$ode, tol = valmap$tol ) 
+  NPrun(model = mod_model_file, data = mod_data_file, cycles = mycycles, indpts = myindpts , overwrite = T,  parallel = TRUE , ode = valmap$ode, tol = valmap$tol ) 
 }else{
   stop("Needs 8 arguments", call.=FALSE)
 }

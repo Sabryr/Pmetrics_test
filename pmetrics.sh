@@ -98,11 +98,15 @@ then
 	echo $dataset_file
    
 else
-	echo "Need four arguments"
-	echo "1. mycycles"
-	echo "2. myindpts"
+	echo "Need 7 arguments"
+	echo "1. Number of cycles"
+	echo "2. Numper of indpts"
 	echo "3. Full path to dataset"
-	echo "4. Full path to model file"
+	echo "4. Full path 	to model file"
+	echo "5. Parrallel TRUE/FALSE"
+	echo "6. ode value "
+	echo "7. tol value"
+
 	exit 1
 fi
 
