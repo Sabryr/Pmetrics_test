@@ -18,4 +18,5 @@ if (!suppressWarnings(require("Pmetrics"))){
     print("Pmetrics already installed in ")
     library(Pmetrics)
     print(path.package("Pmetrics"))
+    print("Delete that first, if you want to reinstall")   
 }
