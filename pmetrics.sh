@@ -8,6 +8,8 @@ myindpts=108 #108
 MODEL_FILE_NM="model.txt"
 DATA_FILE_NM="dataset.csv"
 
+ODE="-4"
+TOL="0.01"
 
 parallel="FALSE"
 export HPC_MKL_LIB=/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64
@@ -73,13 +75,15 @@ else
    exit 1
 fi
 
-if [ "$#" -eq 5 ]
+if [ "$#" -eq 7 ]
 then
 	mycycles=$1 #9997
 	myindpts=$2 #108
 	model_file=$3  #$INPUT_DIR"/dataset.csv" 
 	dataset_file=$4 #$INPUT_DIR"/model.txt"
         parallel=$5
+        ODE="$6"
+        TOL="$7"
 	model_file_nm=$(echo $model_file | awk -F "/" '{print $NF}')
         echo $model_file
 	echo $dataset_file
@@ -136,13 +140,12 @@ cp $FCONF $HOME/.config/Pmetrics/
 
 echo "------------------------------"
 
-echo $RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel $MODEL_FILE_NM $DATA_FILE_NM &>> $LOG
-
+echo $RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel $MODEL_FILE_NM $DATA_FILE_NM $ODE $TOL
 
 which Rscript
 echo $RSCRIPT
 #$RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel &>> $LOG
-$RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel $MODEL_FILE_NM $DATA_FILE_NM &>> $LOG
+$RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel $MODEL_FILE_NM $DATA_FILE_NM $ODE $TOL &>> $LOG
 
 echo $RSCRIPT " -- done"
 mv 1 $OUT_DIR
