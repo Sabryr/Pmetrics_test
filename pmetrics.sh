@@ -164,4 +164,4 @@ echo "" &>> $LOG
 $NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT $MODEL_FILE_NM $DATA_FILE_NM  $model_file $dataset_file&>> $LOG
 echo "Done, output folder is $OUT_DIR"
 echo "HTML report in "$OUT_DIR"/outputs/NPAGreport.html"
-stty sane
+#stty sane
