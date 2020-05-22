@@ -1,12 +1,17 @@
 Sabryr & frodstr
 2020-05-04
 
+This project is to create a wrapper for Pmetrics :
+Original project: 
+https://github.com/LAPKB/Pmetrics
+http://www.lapk.org/pmetrics.php
+
 ##  For saga.sigma2.no using conda
 login to saga.sigma2.no
 
 ´´´
 #rm -rf Pmetrics_test
-git clone https://github.uio.no/sabryr/Pmetrics_test.git
+git clone https://github.com/Sabryr/Pmetrics_test.git
 cd Pmetrics_test
 
 #Install Pmetrics R package from login node, this can not be done 
