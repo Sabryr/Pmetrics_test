@@ -4,10 +4,10 @@ cd "$1"
 ls -lhrt 
 PM_RLIB="$2"
 REPORTSCRIPT="$3"
-MODEL_FILE="$4"
-DATA_FILE="$5"
-ORIG_MODEL_FILE=$(basename "$6")
-ORIG_DATA_FILE=$(basename "$7")
+DATA_FILE="$4"
+MODEL_FILE="$5"
+ORIG_DATA_FILE=$(basename "$6")
+ORIG_MODEL_FILE=$(basename "$7")
 echo Linux>time.txt
 date +%s>>time.txt
 ./np_prep MacOSX < PMcontrol
@@ -53,9 +53,8 @@ mv $DATA_FILE inputs/$ORIG_DATA_FILE
 date +%s >> time.txt
 mv time.txt outputs
 if ! $error ; then 
-#echo "BLOCK " Rscript $REPORTSCRIPT $1'/outputs' 'median' 'NPAG' TRUE
-Rscript $REPORTSCRIPT $1'/outputs' 'median' 'NPAG' TRUE
 echo Rscript $REPORTSCRIPT $1'/outputs' 'median' 'NPAG' TRUE
+Rscript $REPORTSCRIPT $1'/outputs' 'median' 'NPAG' TRUE
 echo "results are in"  $1'/outputs/NPAGreport.html' ; 
 fi
 mv npscript $1"/etc"

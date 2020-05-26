@@ -40,10 +40,10 @@ if (length(args)>=8) {
   mycycles = args[4]
   myindpts = args[5]
   parallel = args[6]
-  mod_model_file =  args[7] #"model.txt"
-  mod_data_file =  args[8]#"data.csv"
+  data_file_new_name =  args[7]#"data.csv"
+  model_file_new_name =  args[8] #"model.txt"
   
-  if (length(args)>=8) {
+  if (length(args)>=10) {
     valmap$ode <- args[9]
     valmap$tol <- args[10]
 
@@ -64,24 +64,33 @@ if (length(args)>=8) {
   #}
   setwd(loc)
   print(paste("Current working directory", getwd(), sep = " : "))
-  file.copy(from=c(model_file, dataset_file), to=getwd(), overwrite=T)
-  print(paste(model_file, "basename of model_file ", basename(model_file), sep = " : "))
-  print(paste(dataset_file, "basename of dataset_file ", basename(dataset_file), sep = " : "))
+  #file.copy(from=c(model_file, dataset_file), to=getwd(), overwrite=T)
+  file.copy(from=model_file, to=getwd(), overwrite=T)
+  file.copy(from=dataset_file, to=getwd(), overwrite=T)
+  
+  print(paste("model_file was ", model_file, " now "))
+  print(list.files(pattern="*txt"))
 
-  #if(!file.exists(mod_model_file)){
+  print(paste("dataset_file ",dataset_file, " now "))
+  print(list.files(pattern="*csv"))
+
+  #if(!file.exists(model_file_new_name)){
   #	print("Safe, No model.txt found , renaming ")
-  file.rename(basename(model_file), mod_model_file)
+  file.rename(basename(model_file), model_file_new_name)
+  print(paste(basename(model_file),  "  renamed to ", model_file_new_name))
+
   #}
 
-  #if(!file.exists(mod_data_file)){
+  #if(!file.exists(data_file_new_name)){
   #print("No model.txt")
-  file.rename(basename(dataset_file), mod_data_file )
+  file.rename(basename(dataset_file), data_file_new_name )
+  print(paste(basename(dataset_file),  "  renamed to ", data_file_new_name))
   #}
-  #print(paste(" mod_model_file ", mod_model_file, sep = " : "))
-  #print(paste(" mod_data_file ", mod_data_file, sep = " : "))
+  #print(paste(" model_file_new_name ", model_file_new_name, sep = " : "))
+  #print(paste(" data_file_new_name ", data_file_new_name, sep = " : "))
   #print(paste("Files in  ", getwd(), list.files(), sep = " : "))
   print(paste("ode =", valmap$ode, "  tol = ",valmap$tol))
-  NPrun(model = mod_model_file, data = mod_data_file, cycles = mycycles, indpts = myindpts , overwrite = T,  parallel = TRUE , ode = valmap$ode, tol = valmap$tol ) 
+  NPrun(model = model_file_new_name, data = data_file_new_name, cycles = mycycles, indpts = myindpts , overwrite = T,  parallel = TRUE , ode = valmap$ode, tol = valmap$tol ) 
 }else{
   stop("Needs 8 arguments", call.=FALSE)
 }

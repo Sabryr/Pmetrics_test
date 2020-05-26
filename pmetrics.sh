@@ -5,8 +5,8 @@ VERSION="0.1"
 mycycles=100 #9997
 myindpts=108 #108
 
-MODEL_FILE_NM="model.txt"
-DATA_FILE_NM="dataset.csv"
+MODEL_FILE_NM="modelX.txt"
+DATA_FILE_NM="dataY.csv"
 
 ODE="-4"
 TOL="0.01"
@@ -84,17 +84,19 @@ then
         parallel=$5
         ODE="$6"
         TOL="$7"
-	model_file_nm=$(echo $model_file | awk -F "/" '{print $NF}')
+	MODEL_FILE_NM=$(echo $model_file | awk -F "/" '{print $NF}')
+        DATA_FILE_NM=$(echo $dataset_file | awk -F "/" '{print $NF}')
         echo $model_file
 	echo $dataset_file
 elif  [ "$#" -eq 4 ]
 then
 	mycycles=$1 #9997
 	myindpts=$2 #108
-	model_file=$3  #$INPUT_DIR"/dataset.csv" 
-	dataset_file=$4 #$INPUT_DIR"/model.txt"
-	model_file_nm=$(echo $model_file | awk -F "/" '{print $NF}')
-	echo $model_file
+	model_file=$3   
+	dataset_file=$4
+	MODEL_FILE_NM=$(echo $model_file | awk -F "/" '{print $NF}')
+        DATA_FILE_NM=$(echo $dataset_file | awk -F "/" '{print $NF}')
+        echo $model_file
 	echo $dataset_file
    
 else
@@ -106,7 +108,6 @@ else
 	echo "5. Parrallel TRUE/FALSE"
 	echo "6. ode value "
 	echo "7. tol value"
-
 	exit 1
 fi
 
@@ -144,12 +145,12 @@ cp $FCONF $HOME/.config/Pmetrics/
 
 echo "------------------------------"
 
-echo $RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel $MODEL_FILE_NM $DATA_FILE_NM $ODE $TOL
 
 which Rscript
 echo $RSCRIPT
-#$RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel &>> $LOG
+echo $RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel $MODEL_FILE_NM $DATA_FILE_NM $ODE $TOL
 $RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel $MODEL_FILE_NM $DATA_FILE_NM $ODE $TOL &>> $LOG
+
 
 echo $RSCRIPT " -- done"
 mv 1 $OUT_DIR
@@ -157,11 +158,12 @@ cd $OUT_DIR
 
 echo "directory rename from 1 to $OUT_DIR -- done "
 
-echo $NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT $MODEL_FILE_NM $DATA_FILE_NM  
+echo $NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT $MODEL_FILE_NM $DATA_FILE_NM  $model_file $dataset_file 
 echo "" &>> $LOG
 echo "-----------"$NPSCRIPT"-------------" &>> $LOG
 echo "" &>> $LOG
-$NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT $MODEL_FILE_NM $DATA_FILE_NM  $model_file $dataset_file&>> $LOG
+
+$NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT $MODEL_FILE_NM $DATA_FILE_NM  $model_file $dataset_file &>> $LOG
 echo "Done, output folder is $OUT_DIR"
 echo "HTML report in "$OUT_DIR"/outputs/NPAGreport.html"
 #stty sane
