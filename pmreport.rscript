@@ -1,5 +1,8 @@
 #!/usr/bin/env Rscript
 #sabryr 2020-02-15
+# This script is not supposed to be used directly,
+# and should be	invoked from pmetrics.sh
+
 args <- commandArgs(trailingOnly = TRUE)
 print("Creating report")
 if (length(args)==4) {

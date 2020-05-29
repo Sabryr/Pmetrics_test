@@ -1,4 +1,8 @@
 #!/bin/bash
+#sabryr 29-05-2020
+# This script is not supposed to be used directly,
+# and should be	invoked from pmetrics.sh
+
 echo $@
 cd "$1"
 ls -lhrt 

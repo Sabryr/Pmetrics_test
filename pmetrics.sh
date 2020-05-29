@@ -1,7 +1,21 @@
 #!/bin/bash
-#2020-02-14 Sabryr
-#Two argments mycycles and myindpts
-VERSION="0.1"
+#2020-03-29 Sabryr
+#This is the main batch script and the only one meant to be called directly.
+#This script has hard coded paths for the saga compute cluster
+#Script needs 7 arguments
+# 1. Number of cycles
+# 2. Numper of indpts
+# 3. Full path to dataset
+# 4. Full path	to model file
+# 5. Parrallel TRUE/FALSE
+# 6. ode value 
+# 7. tol value
+# The Pmetrics manual found in the following link provides details of these
+# http://www.lapk.org/pmetrics.php 
+
+
+VERSION="0.2"
+
 mycycles=100 #9997
 myindpts=108 #108
 
@@ -12,6 +26,8 @@ ODE="-4"
 TOL="0.01"
 
 parallel="FALSE"
+
+#This is a hardcoded path for SAGA, should be fed in in the generic version
 export HPC_MKL_LIB=/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64
 
 LOC=$PWD

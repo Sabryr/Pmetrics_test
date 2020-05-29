@@ -1,6 +1,8 @@
 #!/usr/bin/env Rscript
-###!/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/bin/Rscript
 #sabryr 2020-02-14
+# This script is not supposed to be used directly,
+# and should be invoked from pmetrics.sh
+
 args <- commandArgs(trailingOnly = TRUE)
 r <- getOption("repos")
 r["CRAN"] <- "http://cran.r-project.org" 
