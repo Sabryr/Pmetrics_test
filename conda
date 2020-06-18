@@ -1,9 +1,18 @@
 On project area(19-06-2020)
+module load Anaconda2/2019.03
+source /cluster/software/Anaconda2/2019.03/etc/profile.d/conda.sh
 conda create -y -c conda-forge -c bioconda java-jdk r-essentials=3.6.0 --prefix=/cluster/projects/nn9736k/conda/R-3.6.0
 conda activate /cluster/projects/nn9736k/conda/R-3.6.0
 conda install -y -c conda-forge -c r  r-devtools r-zip=2.0.4 r-openxlsx=4.1.4 r-mclust=5.4.6 r-doParallel=1.0.15 r-chron=2.3-55 r-BH=1.72.0-3
 export LD_LIBRARY_PATH=/cluster/projects/nn9736k/conda/R-3.6.0/lib:$LD_LIBRARY_PATH
 
+Install dplyr 0.8.4
+> remove.packages("dplyr")
+> packageVersion("dplyr")
+> library(devtools)
+> install.packages("plogr", repo="cran.uib.no")
+> packageurl <- "https://cran.r-project.org/src/contrib/Archive/dplyr/dplyr_0.8.4.tar.gz"
+> install.packages(packageurl, repos=NULL, type="source")
 
 ----
 conda env create --prefix /cluster/work/support/sabryr/conda/pmetrics/R-3.5.1.2 -f environment.yml
