@@ -58,8 +58,8 @@ then
    conda deactivate &>/dev/null
    export PATH=/node/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/cluster/bin
    source /cluster/software/Anaconda2/2019.03/etc/profile.d/conda.sh
-   conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.6.0 && which R
-   export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/lib:/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64_lin:$LD_LIBRARY_PATH
+   conda activate /cluster/projects/nn9736k/conda/R-3.6.0 && which R
+   export LD_LIBRARY_PATH=/cluster/projects/nn9736k/conda/R-3.6.0/lib:/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64_lin:$LD_LIBRARY_PATH
    $LOC"/install.rscript"   
   else
     echo "Pmetrics HPC test version "$VERSION
