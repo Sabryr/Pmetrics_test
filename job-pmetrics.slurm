@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH --job-name=Pmetrics-test
-#SBATCH --account=nn9736k
+#SBATCH --account=xx
 #SBATCH --time=4:10:00
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=8
@@ -22,8 +22,8 @@ module restore
 export PATH=/node/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/cluster/bin  
 module load Anaconda2/2019.03
 source /cluster/software/Anaconda2/2019.03/etc/profile.d/conda.sh
-conda activate /cluster/work/support/sabryr/conda/pmetrics/R-3.6.0
-export LD_LIBRARY_PATH=/cluster/work/support/sabryr/conda/pmetrics/R-3.6.0/lib:/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64_lin:$LD_LIBRARY_PATH
+conda activate /cluster/projects/nn9736k/conda/R-3.6.0
+export LD_LIBRARY_PATH=/cluster/projects/nn9736k/conda/R-3.6.0/lib:/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64_lin:$LD_LIBRARY_PATH
 
 CYCLES=9999
 INDPTS=110
