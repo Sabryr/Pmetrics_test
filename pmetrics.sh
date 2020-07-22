@@ -15,6 +15,9 @@
 
 
 VERSION="0.2"
+CDATE=$(date +"%Y%m%d_%H%M%S")
+
+LOCK_FILE="NA"
 
 mycycles=100 #9997
 myindpts=108 #108
@@ -31,8 +34,8 @@ parallel="FALSE"
 export HPC_MKL_LIB=/cluster/software/imkl/2018.1.163-iimpi-2018a/mkl/lib/intel64
 
 LOC=$PWD
-OUT_DIR=$LOC"/out_"$(date +"%Y%m%d_%H%M%S")
-LOG=$LOC"/out_"$(date +"%Y%m%d_%H%M%S")".log"
+OUT_DIR=$LOC"/out_"$CDATE
+LOG=$LOC"/out_"$CDATE".log"
 echo "LOG "$LOG
 touch $LOG
 FCONF=$LOC"/FortConfig.txt"
@@ -67,6 +70,23 @@ then
 exit 0 
 fi
 
+ls LOCK.* &> /dev/null
+
+if [ $? -eq 0 ]
+then
+ echo "------------------"
+ echo "There is already on going processing in the current location, please wait and try when that process has finished initializing"
+ echo "------------------"
+ cat LOCK.*
+ echo "------------------"
+ exit 1
+else
+  LOCK_FILE="LOCK."$BASHPID
+  echo "Date: " $(date) > ${LOCK_FILE}
+  echo "Started by: " $(echo $USER) >> ${LOCK_FILE}
+  echo "lock file " ${LOCK_FILE}
+  
+fi
 
 ls [1-999]* &> /dev/null
 
@@ -76,6 +96,7 @@ then
         echo " --  "
         ls | grep -E '^[[:digit:]]+'
         echo "Please remove them or use new location"
+        rm ${LOCK_FILE} &> /dev/null
         sleep 2
         exit 1
 fi
@@ -170,9 +191,17 @@ $RSCRIPT $LOC $model_file $dataset_file $mycycles $myindpts $parallel $MODEL_FIL
 
 echo $RSCRIPT " -- done"
 mv 1 $OUT_DIR
-cd $OUT_DIR
+if [ $? -eq 0 ]
+then
+  echo "directory rename from 1 to $OUT_DIR -- done " 
+else
+ echo "directory rename from 1 to $OUT_DIR -- Failed "
+ rm ${LOCK_FILE} &> /dev/null
+ exit 1
+fi
 
-echo "directory rename from 1 to $OUT_DIR -- done "
+rm ${LOCK_FILE} &> /dev/null
+cd $OUT_DIR
 
 echo $NPSCRIPT $OUT_DIR $R_LIBS $REPORTSCRIPT $MODEL_FILE_NM $DATA_FILE_NM  $model_file $dataset_file 
 echo "" &>> $LOG
